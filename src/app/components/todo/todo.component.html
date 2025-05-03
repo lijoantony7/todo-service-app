@@ -1,0 +1,19 @@
+<div>
+  <app-todo-form (todoEmit)="addTodo($event)"></app-todo-form>
+  <ul *ngFor="let todo of todos; let i = index">
+    <li>
+      <span
+        [ngClass]="{
+          'text-decoration-line-through text-success': todo.completed
+        }"
+      >
+        {{ todo.title }}
+      </span>
+
+      <button (click)="doneHanlde(todo.uid)">
+        {{ todo.completed ? "Undo" : "Done" }}
+      </button>
+      <button (click)="deleteHanlde(todo.uid)">Delete</button>
+    </li>
+  </ul>
+</div>
