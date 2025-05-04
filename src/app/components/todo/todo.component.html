@@ -1,19 +1,52 @@
-<div>
-  <app-todo-form (todoEmit)="addTodo($event)"></app-todo-form>
-  <ul *ngFor="let todo of todos; let i = index">
-    <li>
-      <span
-        [ngClass]="{
-          'text-decoration-line-through text-success': todo.completed
-        }"
+<div class="container text-center mt-4">
+  <h2>Welcome to {{ title }}</h2>
+  <div class="mt-4">
+    <app-todo-form (todoEmit)="addTodo($event)"></app-todo-form>
+  </div>
+  <div class="col-8 mx-auto">
+    <ul class="list-unstyled mt-4">
+      <li
+        *ngFor="let todo of todos; let i = index"
+        class="d-flex justify-content-between align-items-center border rounded p-3 mb-2"
       >
-        {{ todo.title }}
-      </span>
+        <span
+          [ngClass]="{
+            'text-decoration-line-through text-success': todo.completed
+          }"
+          class="flex-grow-1 text-start"
+        >
+          {{ todo.title }}
+        </span>
 
-      <button (click)="doneHanlde(todo.uid)">
-        {{ todo.completed ? "Undo" : "Done" }}
-      </button>
-      <button (click)="deleteHanlde(todo.uid)">Delete</button>
-    </li>
-  </ul>
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-sm"
+            [ngClass]="todo.completed ? 'btn-warning' : 'btn-success'"
+            (click)="doneHanlde(todo.uid)"
+          >
+            <i
+              [class]="
+                todo.completed
+                  ? 'bi bi-arrow-counterclockwise'
+                  : 'bi bi-check-circle'
+              "
+            ></i>
+            {{ todo.completed ? "Undo" : "Done" }}
+          </button>
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="deleteHanlde(todo.uid)"
+          >
+            <i class="bi bi-trash"></i> Delete
+          </button>
+          <a
+            [routerLink]="['/details', todo.uid]"
+            class="btn btn-sm btn-primary"
+          >
+            <i class="bi bi-info-circle"></i> Details
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

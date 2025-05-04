@@ -47,6 +47,10 @@ export class TodoService {
     this.saveToLocal();
   }
 
+  getTodo(uid: Date) {
+    return this.todos.find(x => x.uid == uid);
+  }
+
   getTodos() {
     const data = localStorage.getItem('todos');
     return data ? JSON.parse(data) : [];

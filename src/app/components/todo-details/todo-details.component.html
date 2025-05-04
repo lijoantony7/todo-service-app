@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Todo Details</h2>
+    <div>
+      <button
+        type="button"
+        [routerLink]="['']"
+        routerLinkActive="router-link-active"
+        class="btn btn-secondary"
+      >
+        Go Back
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ todo?.title }}</h5>
+      <p class="card-text">
+        <strong>Status:</strong>
+        <span
+          [class.text-success]="todo?.completed"
+          [class.text-danger]="!todo?.completed"
+        >
+          {{ todo?.completed ? "Completed" : "Pending" }}
+        </span>
+      </p>
+      <p class="card-text">
+        <strong>Created At:</strong> {{ todo?.createdOn }}
+      </p>
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary" (click)="toggleCompleted()">
+          {{ todo?.completed ? "Mark as Pending" : "Mark as Completed" }}
+        </button>
+        <button class="btn btn-danger" (click)="deleteTodo()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
