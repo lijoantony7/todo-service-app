@@ -10,8 +10,8 @@ import { RouterModule } from '@angular/router';
   selector: 'app-todo',
   standalone: true,
   imports: [CommonModule, FormsModule, TodoFormComponent, RouterModule],
-  templateUrl: './todo.component.html',
-  styleUrl: './todo.component.css'
+  templateUrl: './todo-list.component.html',
+  styleUrl: './todo-list.component.css'
 })
 export class TodoComponent implements OnInit {
   title: string = 'To-Do-Service-App';
@@ -29,11 +29,11 @@ export class TodoComponent implements OnInit {
     }
   }
 
-  doneHanlde(uid: Date) {
+  doneHanlde(uid: number) {
     this.todoService.toggleCompleted(uid);
   }
 
-  deleteHanlde(uid: Date) {
+  deleteHanlde(uid: number) {
     this.todoService.deleteTodo(uid);
   }
 }

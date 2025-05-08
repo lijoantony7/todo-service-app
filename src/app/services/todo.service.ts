@@ -24,7 +24,7 @@ export class TodoService {
       title,
       completed: false,
       createdOn: new Date(),
-      uid: new Date(),
+      uid: Date.now(),
     }
 
     this.todos.push(newTodo);
@@ -32,7 +32,7 @@ export class TodoService {
     this.saveToLocal();
   }
 
-  toggleCompleted(uid: Date) {
+  toggleCompleted(uid: number) {
     const todo = this.todos.find(x => x.uid == uid);
     if (todo) {
       todo.completed = !todo.completed;
@@ -41,13 +41,13 @@ export class TodoService {
     }
   }
 
-  deleteTodo(uid: Date) {
+  deleteTodo(uid: number) {
     this.todos = this.todos.filter(x => x.uid != uid);
     this.todoSubject.next(this.todos);
     this.saveToLocal();
   }
 
-  getTodo(uid: Date) {
+  getTodo(uid: number) {
     return this.todos.find(x => x.uid == uid);
   }
 

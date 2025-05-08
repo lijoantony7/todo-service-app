@@ -3,5 +3,5 @@ export interface Todo {
   title: string;
   completed: boolean;
   createdOn: Date;
-  uid: Date;
+  uid: number;
 }
